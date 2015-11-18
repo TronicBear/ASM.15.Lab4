@@ -263,12 +263,14 @@ sub enCode{
 ############
 sub push_to_server{
   my $UA=LWP::UserAgent->new;
+  my $resp=$UA->get("http://localhost/cgi-bin/lab3.cgi");
+  $resp->{'_content'}=~ m/student=(\w)">04. Borisenko/;
   print "Start sending tables to lab3...\n";
   while(my ($key,$val)=each %$cache){
     my $Resp=$UA->post( 
 		"http://localhost/cgi-bin/lab3.cgi",
 		[
-		  'student' =>2,
+		  'student' =>$1,
 		  'Name' => enCode($val->{'Name'}),
 		  'Status' => enCode($val->{'Status'}),
 		  'Address' => enCode($val->{'Address'}),					
