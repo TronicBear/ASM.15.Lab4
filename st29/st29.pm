@@ -209,12 +209,11 @@ sub DoAdd{
 		$comp = "-";
 	}
 	my $query = $db->prepare("insert into $table (fio,age,dolzh,comp) values(?,?,?,?)");
-	my $f = $q->param('fio');
-	$f =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
-	my $a = $q->param('age');
-	my $d = $q->param('dolzh');
-	my $c = $comp;
-	$query->execute($f,$a,$d,hexd($c));
+	my $f = hexd($q->param('fio'));
+	my $a = hexd($q->param('age'));
+	my $d = hexd($q->param('dolzh'));
+	my $c = hexd($comp);
+	$query->execute($f,$a,$d,$c);
 	$query->finish();
 };
 
@@ -229,11 +228,10 @@ sub DoEdit{
 	else{
 		$comp = "-";
 	}
-	my $f = $q->param('fio');
-	$f =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
-	my $a = $q->param('age');
-	my $d = $q->param('dolzh');
-	my $c = $comp;
+	my $f = hexd($q->param('fio'));
+	my $a = hexd($q->param('age'));
+	my $d = hexd($q->param('dolzh'));
+	my $c = hexd($comp);
 	DoLoad($db, $table);
 	my $numm = @spisok[$num--]->{id};
 	my $query = $db->prepare("update $table set fio=?, age=?, comp=? where id = ?");
