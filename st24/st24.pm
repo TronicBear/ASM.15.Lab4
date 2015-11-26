@@ -97,7 +97,7 @@ use Encode;
    my $browser = LWP::UserAgent->new;
     my $name=$_[0];
     my $age=$_[1];
-    Encode::from_to($name, 'windows-86d6', 'windows-1251');
+    Encode::from_to($name, 'windows-866', 'windows-1251');
     Encode::from_to($age, 'windows-866', 'windows-1251');
             my $response = $browser->post(
               'http://localhost/cgi-bin/st24lab3.pl',
