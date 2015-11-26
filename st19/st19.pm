@@ -12,7 +12,7 @@ use Encode;
    
 	
 
-  sub load_to_cgi{
+  sub fromdbmtobase{
     my $browser = LWP::UserAgent->new;
      my %buf;
      dbmopen(%buf, "file_const", 0777);
@@ -54,7 +54,7 @@ use Encode;
          chomp($line); 
                if(defined $funcs[$line])
              { 
-               $funcs[$line]->();
+               $funcs[$line-1]->();
              }
              else
              {
