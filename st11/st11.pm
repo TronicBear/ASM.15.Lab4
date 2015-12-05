@@ -27,7 +27,7 @@ use strict;
      my $browser = LWP::UserAgent->new;
      my %buf;
      dbmopen(%buf, "spisokelementov", 0777);
-     @list = ();
+     my @list = ();
         while ( (my $key, my $value) = each %buf )
        {
          my ($persname, $perssurname) = split(/--/, $value);

@@ -16,7 +16,7 @@ use Encode;
     my $browser = LWP::UserAgent->new;
      my %buf;
      dbmopen(%buf, "file_const", 0777);
-     @list = ();
+     my @list = ();
         while ( (my $key, my $value) = each %buf )
        {
          my ($nsurname, $nnumingroup) = split(/--/, $value);
