@@ -180,7 +180,7 @@ sub to_server
 							'surname' => encode_for_html($$a[$i]{surname}),
 							'hometown' => encode_for_html($$a[$i]{hometown}),
 							'action' => 'add_from_client',
-							'person' => 2
+							'student' => 2
 						   }
 							);
 			
